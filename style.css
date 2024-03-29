@@ -1,0 +1,176 @@
+/**** CSS RESET ****/
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/**** FONTS *****/
+
+@font-face { 
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  src: 
+    url(/fonts/Inter-Medium.ttf) format("truetype");
+}
+
+@font-face { 
+  font-family: "Inter-Light";
+  font-style: light;
+  font-weight: 300;
+  src: 
+    url(/fonts/Inter-Light.ttf) format("truetype");
+}
+
+@font-face { 
+  font-family: "Inter-Bold";
+  font-style: bold;
+  font-weight: 800;
+  src: 
+    url(/fonts/Inter-ExtraBold.ttf) format("truetype");
+}
+
+/**** COLOURS ****/
+
+
+  :root {
+    --red: #CF1313;
+    --green: #65CF13;
+    --blue: #4A5CFF;
+    --white: #ffffff;
+}
+
+/**** STYLE ****/
+
+body {
+  font-family: 'Inter-Light';
+  font-size: 2rem;
+  color: var(--white);
+  background-image: linear-gradient(to right top, #ffaaaa, #fea2a2, #fd9a9a, #fc9191, #fa8989);
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.columns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 7rem;
+}
+
+.btn {
+  width: 10rem;
+  border: 3px solid var(--white);
+  color: inherit;
+}
+
+.btn-timer {
+  background-color: var(--red);
+  margin-bottom: 1rem;
+}
+
+.btn-start {
+  background-color: var(--green);
+}
+
+.btn-operator {
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.question-wrap {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+#answer {
+  text-align: center;
+  width: 10rem;
+  border: none;
+  margin-bottom: 5rem;
+}
+
+/*Removing arrow buttons from input*/
+#answer::-webkit-inner-spin-button,
+#answer::-webkit-outer-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+}
+
+#answer {
+    -moz-appearance:textfield !important;
+}
+
+.wrap-operator,
+.wrap-top-score
+ {
+  font-size: 1.2rem;
+}
+
+.list-operator,
+.list-top-score {
+  list-style: none;
+  padding: 0;
+}
+
+
