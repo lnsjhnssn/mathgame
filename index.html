@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="main-container">
+    <div class="column-1 columns">
+      <div class="wrap-operator">
+        <span>OPERATOR</span>
+        <ul class="list-operator">
+          <li><button class="btn-operator" id="addition">ADDITION +</button></li>
+          <li><button class="btn-operator" id="subtraction">SUBTRACTION -</button></li>
+          <li><button class="btn-operator" id="multiplication">MULTIPLICATION *</button></li>
+          <li><button class="btn-operator" id="division">DIVISION /</button></li>
+        </ol>
+      </div>
+    </div>
+    <div class="column-2 columns">
+      <button class="btn btn-timer"><span id="time-left">10:33</span></button>
+      <button class="btn btn-start"><span id="start">START</span></button>
+      <div class="question-wrap">
+        <span id="question">12 + 13</span>
+      </div>
+      <div>
+        <input type="number" name="" id="answer">
+      </div>
+      <div>
+        <span>SCORE</span>
+        <span id="current-score">10</span>
+      </div>
+    </div>
+    <div class="column-3 columns">
+      <div class="wrap-top-score">
+        <span>TOP SCORE</span>
+        <ol class="list-top-score">
+          <li id="top-score-1">Linus 14</li>
+          <li id="top-score-2">Jojo 13</li>
+          <li id="top-score-3">Mamma 11</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
