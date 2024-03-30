@@ -21,12 +21,6 @@ dd {
   margin: 0;
 }
 
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role='list'],
-ol[role='list'] {
-  list-style: none;
-}
-
 /* Set core root defaults */
 html:focus-within {
   scroll-behavior: smooth;
@@ -37,11 +31,6 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-}
-
-/* A elements that don't have a class get default styles */
-a:not([class]) {
-  text-decoration-skip-ink: auto;
 }
 
 /* Make images easier to work with */
@@ -116,37 +105,38 @@ body {
   padding-top: 7rem;
 }
 
-.btn {
-  width: 10rem;
-  border: 3px solid var(--white);
-  color: inherit;
+#wrap-operator,
+#wrap-high-score {
+  font-size: 1.2rem;
 }
 
-.btn-timer {
-  background-color: var(--red);
-  margin-bottom: 1rem;
-}
-
-.btn-start {
-  background-color: var(--green);
-}
-
-.btn-operator {
-  color: inherit;
-  background-color: transparent;
-  border: none;
+#list-operator,
+#list-high-score {
+  list-style: none;
   padding: 0;
 }
 
-.question-wrap {
+#question-wrap {
   margin-top: 5rem;
   margin-bottom: 5rem;
 }
 
+/* #addition {
+  font-family: 'Inter-Bold';
+  font-weight: 800;
+} */
+
+/* Inputs */
 #answer {
   text-align: center;
   width: 10rem;
   border: none;
+  margin-bottom: 5rem;
+}
+
+#high-score-name {
+  border: none;
+  width: 10rem;
   margin-bottom: 5rem;
 }
 
@@ -158,19 +148,100 @@ body {
 }
 
 #answer {
-    -moz-appearance:textfield !important;
+    -moz-appearance: textfield !important;
 }
 
-.wrap-operator,
-.wrap-top-score
- {
-  font-size: 1.2rem;
+/* BUTTONS */
+.btn-main {
+  width: 10rem;
+  border: 3px solid var(--white);
+  color: inherit;
 }
 
-.list-operator,
-.list-top-score {
-  list-style: none;
+#btn-timer {
+  background-color: var(--red);
+  margin-bottom: 1rem;
+  /* display: none; */
+}
+
+#btn-start {
+  background-color: var(--green);
+  /* display: none; */
+}
+
+
+.btn-operator {
+  color: inherit;
+  background-color: transparent;
+  border: none;
   padding: 0;
 }
+
+#btn-start:hover,
+.btn-operator:hover {
+  cursor: pointer;
+}
+
+/**** Dynamic CSS ****/
+
+/* Final Score High Score */
+
+/* display: block */
+#final-score-highscore {
+  display: none;
+  text-align: center;
+}
+
+
+/* #wrap-final-score {
+  display: block;
+} 
+
+.btn-main,
+#wrap-operator,
+#wrap-high-score,
+#question-wrap,
+#answer,
+#wrap-current-score,
+#wrap-operator,
+#wrap-high-score {
+  display: none;
+} */
+
+
+#you-made-it {
+  margin-bottom: 5rem;
+}
+
+#high-score-name {
+  margin-top: 1rem;
+}
+
+#party-popper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+/* Final Score Normal */
+
+/* Display Block */
+#wrap-final-score {
+  margin-top: 5rem;
+  display: none;
+}
+/* Display Block */
+#press-enter {
+  display: none;
+}
+
+/*
+#wrap-current-score,
+#wrap-answer,
+#question-wrap {
+  display: none;
+} */
+
+
 
 
