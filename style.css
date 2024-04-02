@@ -21,12 +21,6 @@ dd {
   margin: 0;
 }
 
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role='list'],
-ol[role='list'] {
-  list-style: none;
-}
-
 /* Set core root defaults */
 html:focus-within {
   scroll-behavior: smooth;
@@ -37,11 +31,6 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-}
-
-/* A elements that don't have a class get default styles */
-a:not([class]) {
-  text-decoration-skip-ink: auto;
 }
 
 /* Make images easier to work with */
@@ -59,15 +48,7 @@ select {
   font: inherit;
 }
 
-/**** FONTS *****/
-
-@font-face { 
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 500;
-  src: 
-    url(/fonts/Inter-Medium.ttf) format("truetype");
-}
+/***** FONTS *****/
 
 @font-face { 
   font-family: "Inter-Light";
@@ -77,15 +58,7 @@ select {
     url(/fonts/Inter-Light.ttf) format("truetype");
 }
 
-@font-face { 
-  font-family: "Inter-Bold";
-  font-style: bold;
-  font-weight: 800;
-  src: 
-    url(/fonts/Inter-ExtraBold.ttf) format("truetype");
-}
-
-/**** COLOURS ****/
+/***** COLOURS *****/
 
 
   :root {
@@ -95,7 +68,7 @@ select {
     --white: #ffffff;
 }
 
-/**** STYLE ****/
+/****** STYLE GAME *******/
 
 body {
   font-family: 'Inter-Light';
@@ -116,38 +89,42 @@ body {
   padding-top: 7rem;
 }
 
-.btn {
-  width: 10rem;
-  border: 3px solid var(--white);
-  color: inherit;
+.label-operator {
+  display: block;
 }
 
-.btn-timer {
-  background-color: var(--red);
-  margin-bottom: 1rem;
+#wrap-operator,
+#wrap-high-score {
+  font-size: 1.2rem;
 }
 
-.btn-start {
-  background-color: var(--green);
-}
-
-.btn-operator {
-  color: inherit;
-  background-color: transparent;
-  border: none;
+#list-operator,
+#list-high-score {
+  list-style: none;
   padding: 0;
 }
 
-.question-wrap {
+#wrap-question {
   margin-top: 5rem;
   margin-bottom: 5rem;
 }
 
-#answer {
+/******* Input text and num *******/
+
+input {
   text-align: center;
+}
+
+#answer {
   width: 10rem;
   border: none;
   margin-bottom: 5rem;
+}
+
+#high-score-name {
+  margin-top: 1rem;
+  border: none;
+  width: 12rem;
 }
 
 /*Removing arrow buttons from input*/
@@ -158,19 +135,95 @@ body {
 }
 
 #answer {
-    -moz-appearance:textfield !important;
+  -moz-appearance: textfield !important;
 }
 
-.wrap-operator,
-.wrap-top-score
- {
-  font-size: 1.2rem;
+/******* Radio Buttons *******/
+
+input[type="radio"] {
+  box-sizing: border-box;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+} 
+
+.label-operator {
+  display: block;
+  cursor: pointer;
 }
 
-.list-operator,
-.list-top-score {
-  list-style: none;
-  padding: 0;
+/******* BUTTONS *******/
+
+.btn-main {
+  width: 10rem;
+  border: 3px solid var(--white);
+  color: inherit;
+  border-radius: 12px;
 }
 
+#btn-start {
+  background-color: var(--green);
+  margin-bottom: 0.7rem;
+  /* display: none; */
+}
+
+#btn-timer {
+  background-color: var(--red);
+}
+
+#btn-start:hover,
+.btn-operator:hover {
+  cursor: pointer;
+}
+
+#btn-play-again {
+  display: inline-block;
+  width: 15rem;
+  background-color: var(--green);
+  margin: auto;
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+}
+
+#btn-play-again:hover {
+  cursor: pointer;
+}
+
+/******* ICONS *******/
+
+#coins {
+  text-align: center;
+}
+
+.party-popper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+}
+
+/******* STYLE GAME-OVER & FINAL SCORE *******/
+
+/* Final Score High Score */
+
+#wrap-final-score-highscore {
+  display: none; /* Javascript = display: block */
+  text-align: center;
+}
+
+#text-if-high-score {
+  margin-top: 0rem;
+}
+
+/* Final Score Normal */
+
+#wrap-final-score {
+  /* margin-top: 5rem; */
+  text-align: center;
+  display: none; /* Javascript = display: block */
+}
+
+#text-if-not-high-score {
+  margin-top: 5rem;
+}
 
