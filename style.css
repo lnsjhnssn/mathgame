@@ -48,15 +48,7 @@ select {
   font: inherit;
 }
 
-/**** FONTS *****/
-
-@font-face { 
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 500;
-  src: 
-    url(/fonts/Inter-Medium.ttf) format("truetype");
-}
+/***** FONTS *****/
 
 @font-face { 
   font-family: "Inter-Light";
@@ -66,15 +58,7 @@ select {
     url(/fonts/Inter-Light.ttf) format("truetype");
 }
 
-@font-face { 
-  font-family: "Inter-Bold";
-  font-style: bold;
-  font-weight: 800;
-  src: 
-    url(/fonts/Inter-ExtraBold.ttf) format("truetype");
-}
-
-/**** COLOURS ****/
+/***** COLOURS *****/
 
 
   :root {
@@ -84,7 +68,7 @@ select {
     --white: #ffffff;
 }
 
-/**** STYLE ****/
+/****** STYLE GAME *******/
 
 body {
   font-family: 'Inter-Light';
@@ -105,6 +89,10 @@ body {
   padding-top: 7rem;
 }
 
+.label-operator {
+  display: block;
+}
+
 #wrap-operator,
 #wrap-high-score {
   font-size: 1.2rem;
@@ -116,28 +104,27 @@ body {
   padding: 0;
 }
 
-#question-wrap {
+#wrap-question {
   margin-top: 5rem;
   margin-bottom: 5rem;
 }
 
-/* #addition {
-  font-family: 'Inter-Bold';
-  font-weight: 800;
-} */
+/******* Input text and num *******/
 
-/* Inputs */
-#answer {
+input {
   text-align: center;
+}
+
+#answer {
   width: 10rem;
   border: none;
   margin-bottom: 5rem;
 }
 
 #high-score-name {
+  margin-top: 1rem;
   border: none;
-  width: 10rem;
-  margin-bottom: 5rem;
+  width: 12rem;
 }
 
 /*Removing arrow buttons from input*/
@@ -148,33 +135,40 @@ body {
 }
 
 #answer {
-    -moz-appearance: textfield !important;
+  -moz-appearance: textfield !important;
 }
 
-/* BUTTONS */
+/******* Radio Buttons *******/
+
+input[type="radio"] {
+  box-sizing: border-box;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+} 
+
+.label-operator {
+  display: block;
+  cursor: pointer;
+}
+
+/******* BUTTONS *******/
+
 .btn-main {
   width: 10rem;
   border: 3px solid var(--white);
   color: inherit;
-}
-
-#btn-timer {
-  background-color: var(--red);
-  margin-bottom: 1rem;
-  /* display: none; */
+  border-radius: 12px;
 }
 
 #btn-start {
   background-color: var(--green);
+  margin-bottom: 0.7rem;
   /* display: none; */
 }
 
-
-.btn-operator {
-  color: inherit;
-  background-color: transparent;
-  border: none;
-  padding: 0;
+#btn-timer {
+  background-color: var(--red);
 }
 
 #btn-start:hover,
@@ -182,66 +176,54 @@ body {
   cursor: pointer;
 }
 
-/**** Dynamic CSS ****/
+#btn-play-again {
+  display: inline-block;
+  width: 15rem;
+  background-color: var(--green);
+  margin: auto;
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+}
 
-/* Final Score High Score */
+#btn-play-again:hover {
+  cursor: pointer;
+}
 
-/* display: block */
-#final-score-highscore {
-  display: none;
+/******* ICONS *******/
+
+#coins {
   text-align: center;
 }
 
-
-/* #wrap-final-score {
-  display: block;
-} 
-
-.btn-main,
-#wrap-operator,
-#wrap-high-score,
-#question-wrap,
-#answer,
-#wrap-current-score,
-#wrap-operator,
-#wrap-high-score {
-  display: none;
-} */
-
-
-#you-made-it {
-  margin-bottom: 5rem;
-}
-
-#high-score-name {
-  margin-top: 1rem;
-}
-
-#party-popper {
+.party-popper {
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
+  margin-top: 3rem;
+}
+
+/******* STYLE GAME-OVER & FINAL SCORE *******/
+
+/* Final Score High Score */
+
+#wrap-final-score-highscore {
+  display: none; /* Javascript = display: block */
+  text-align: center;
+}
+
+#text-if-high-score {
+  margin-top: 0rem;
 }
 
 /* Final Score Normal */
 
-/* Display Block */
 #wrap-final-score {
+  /* margin-top: 5rem; */
+  text-align: center;
+  display: none; /* Javascript = display: block */
+}
+
+#text-if-not-high-score {
   margin-top: 5rem;
-  display: none;
 }
-/* Display Block */
-#press-enter {
-  display: none;
-}
-
-/*
-#wrap-current-score,
-#wrap-answer,
-#question-wrap {
-  display: none;
-} */
-
-
-
 

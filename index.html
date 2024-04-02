@@ -10,59 +10,68 @@
 
 <body>
   <div class="main-container">
-
     <!-- Column 1 -->
     <div class="column-1 columns">
       <div id="wrap-operator">
-        <span>OPERATOR</span>
-        <ul id="list-operator">
-          <li><button class="btn-operator" id="addition">ADDITION +</button></li>
-          <li><button class="btn-operator" id="subtraction">SUBTRACTION -</button></li>
-          <li><button class="btn-operator" id="multiplication">MULTIPLICATION *</button></li>
-          <li><button class="btn-operator" id="division">DIVISION /</button></li>
-          </ol>
+
+        <label class="label-operator container" for="addition">
+          <input type="radio" name="operator" id="addition" checked="checked">
+          Addition +
+        </label>
+
+        <label class="label-operator container" for="subtraction">
+          <input type="radio" name="operator" id="subtraction">
+          Subtraction -
+        </label>
+        <label class="label-operator container" for="multiplication">
+          <input type="radio" name="operator" id="multiplication">
+          Multiplication X
+        </label>
+        <label class="label-operator container" for="division">
+          <input type="radio" name="operator" id="division">
+          Division /
+        </label>
       </div>
     </div>
-
     <!-- Column2 -->
     <div class="column-2 columns">
-      <button id="btn-timer" class="btn-main"><span id="timer">10</span></button>
-      <button id="btn-start" class="btn-main"><span id="start">START</span></button>
-      <div id="question-wrap">
-        <span id="question">12 + 13</span>
+      <button id="btn-start" class="btn-main"></button>
+      <button id="btn-timer" class="btn-main"></button>
+      <div id="wrap-question">
+        <span id="question"></span>
       </div>
       <div id="wrap-answer">
         <input type="number" name="" id="answer">
       </div>
-      <div id="wrap-current-score">
-        <span>SCORE</span>
-        <span id="current-score">0</span>
-      </div>
+      <span id="coins"></span>
 
       <!-- Final Score Normal -->
-      <p id="wrap-final-score">YOUR FINAL SCORE IS <span id="final-score">23</span> </p>
-      <p id="press-enter">PRESS ENTER TO PLAY AGAIN</p>
-      
-      <!-- Final Score High Score -->
-        <div id="final-score-highscore">
-          <div id="party-popper"><img src="icons/party.png" alt="party popper icon"><img src="icons/party.png"
-              alt="party popper icon"><img src="icons/party.png" alt="party popper icon"></div>
-          <p>YOUR FINAL SCORE IS <span id="final-score">23</span> </p>
-          <div id="you-made-it"><span>AND YOU MADE IT TO THE HIGH SCORE!</span></div>
-          <p> PLEASE TYPE IN YOUR NAME </p>
-          <input type="text" name="" id="high-score-name">
-        </div>
-    </div>
+      <div id="wrap-final-score">
+        <p>
+          <span>YOU GOT </span>
+          <span id="final-score"></span> 🟡
+        </p>
+      </div>
 
+      <!-- Final Score High Score -->
+      <!-- <div id="wrap-final-score-highscore">
+          <p>YOU GOT <span id="final-score-highscore"></span> POINTS.</p> -->
+      <div id="wrap-final-score-highscore">
+        <p>THAT'S A HIGH SCORE</p>
+        <div class="party-popper">
+          <p>🎉🎉🎉</p>
+        </div>
+        <label for="high-score-name">FILL IN YOUR NAME :</label>
+        <input type="text" id="high-score-name" maxlength="8" />
+      </div>
+      <button id="btn-play-again" class="btn-main">PLAY AGAIN</button>
+    </div>
     <!-- Column 3 -->
     <div class="column-3 columns">
       <div id="wrap-high-score">
         <span>HIGH SCORE</span>
-        <ol id="list-high-score">
-          <li id="high-score-1">Linus 14</li>
-          <li id="high-score-2">Jojo 13</li>
-          <li id="high-score-3">Mamma 11</li>
-        </ol>
+        <ul id="list-high-score">
+        </ul>
       </div>
     </div>
   </div>

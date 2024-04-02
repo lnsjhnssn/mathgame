@@ -1,125 +1,295 @@
-/**** Selectors ****/
+/********* Selectors DOM *********/
 
-//timer and start timer
-const btnStart = document.querySelector("#btn-start");
-const spanStart = document.querySelector("#start");
-const btnTimer = document.querySelector("#btn-timer");
-const spanTimer = document.querySelector("#timer");
+const btnStart = document.querySelector("#btn-start"); //start button
+const btnTimer = document.querySelector("#btn-timer"); //timer
 
-//question
-const outputQuestion = document.querySelector("#question");
+const outputQuestion = document.querySelector("#question"); //question-field
+const coins = document.querySelector("#coins"); //coins-points
 
-//operator choice
+const wrapCurrentScore = document.querySelector("#wrap-current-score");
+
+//operator choice-field
 const addition = document.querySelector("#addition");
 const subtraction = document.querySelector("#subtraction");
 const multiplication = document.querySelector("#multiplication");
 const division = document.querySelector("#division");
 
-//input-fields
+//input-fields for answer and field for question
 const answerInput = document.querySelector("#answer");
-const name = document.querySelector("#high-score-name");
-
-//score
-const outputScore = document.querySelector("#current-score");
+const highScoreName = document.querySelector("#high-score-name");
+const wrapAnswer = document.querySelector("#wrap-answer");
+const wrapQuestion = document.querySelector("#wrap-question");
 
 //high score list
-const highScore1 = document.querySelector("#high-score-1");
-const highScore2 = document.querySelector("#high-score-2");
-const highScore3 = document.querySelector("#high-score-3");
+const listHighScore = document.querySelector("#list-high-score");
 
-/***** Check Operator Choice ****/
-let operator = "addition";
+//fields to be displayed at the end of each game
+const outputFinalScore = document.querySelector("#final-score");
+const wrapFinalScore = document.querySelector("#wrap-final-score");
+const btnPlayAgain = document.querySelector("#btn-play-again");
+const textIfHighScore = document.querySelector('#text-if-high-score');
+const textNotHighScore = document.querySelector('#text-if-not-high-score');
 
+const wrapFinalScoreHighScore = document.querySelector(
+  "#wrap-final-score-highscore"
+);
+
+/** GLOBAL VARIABLES **/
+
+let timeLeft;
+let score;
+let operator = "addition"; //by default 'addition', player can change it
+
+let lowestHighScore = null; //for comparision with score after each game
+
+let arrHighScore = [
+  {
+    name: "",
+    score: null,
+  },
+  {
+    name: "",
+    score: null,
+  },
+  {
+    name: "",
+    score: null,
+  },
+];
+
+/************* NEW GAME **************/
+
+const newGame = () => {
+  
+  score = 0;
+  timeLeft = 10;
+  let rightAnswer;
+
+  btnStart.style.backgroundColor = 'var(--blue)';
+  btnStart.textContent = score;
+
+  /**** Timer ****/
+  let timer;
+
+  const timerStop = () => {
+    clearInterval(timer);
+  };
+
+  const updateTimer = (val) => {
+    timeLeft += val;
+    btnTimer.textContent = timeLeft;
+  };
+
+  const startTimer = () => {
+    timerStop();
+    timer = setInterval(() => {
+      updateTimer(-1);
+      console.log(timeLeft);
+      if (timeLeft === 0) {
+        timerStop();
+        isHighScore();
+      }
+    }, 1000);
+  };
+
+  /**** Function to render new question ****/
+  const getNewQuestion = () => {
+    let max;
+    let num1;
+    let num2;
+
+    //checks the operator-variable and renders new question
+    switch (operator) {
+      case "addition":
+        max = score + 3;
+        num1 = Math.floor(Math.random() * max);
+        num2 = Math.floor(Math.random() * max);
+        rightAnswer = num1 + num2;
+        outputQuestion.textContent = `${num1} + ${num2}`;
+        break;
+      case "subtraction":
+        max = score + 3;
+        num1 = Math.floor(Math.random() * max);
+        num2 = Math.floor(Math.random() * max);
+        let highNum = Math.max(num1, num2);
+        let lowNum = Math.min(num1, num2);
+        rightAnswer = highNum - lowNum;
+        outputQuestion.textContent = `${highNum} - ${lowNum}`;
+        break;
+      case "multiplication":
+        max = score + 2;
+        num1 = Math.floor(Math.random() * max);
+        num2 = Math.floor(Math.random() * 11);
+        rightAnswer = num1 * num2;
+        outputQuestion.textContent = `${num1} x ${num2}`;
+        break;
+      case "division":
+        max = score + 2;
+        num1 = Math.floor(Math.random() * 8) + 1;
+        num2 = Math.floor(Math.random() * max) + 1;
+        let product = num1 * num2;
+        rightAnswer = product / num1;
+        outputQuestion.textContent = `${product} / ${num1}`;
+        break;
+    }
+  };
+
+  /**** CHECK ANSWER, UPDATE SCORE AND GET NEW QUESTION ****/
+
+  const updateScore = () => {
+    score++;
+    btnStart.textContent = score;
+  };
+
+  //checks if answer is right, updates score and timer
+  const isRightAnswer = (playerAnswer) => {
+    if (playerAnswer == rightAnswer) {
+      updateScore();
+      coins.textContent += "🟡";
+      updateTimer(+1);
+      answerInput.value = "";
+      getNewQuestion();
+    }
+  };
+
+  //listens to players input and sends value to isRightAnswer
+  answerInput.addEventListener("keyup", () => {
+    isRightAnswer(answerInput.value);
+  });
+
+  //Functions to be called in beginning of game ->
+  answerInput.focus();
+  getNewQuestion();
+  startTimer();
+};
+
+
+/****** HIGH SCORE *****/ 
+
+const displayNewHighScore = function (arr) {
+  
+  listHighScore.innerHTML = "";
+
+  for (i of arr) {
+    const highScoreElement = document.createElement("li");
+    const highScoreName = document.createElement("span");
+    const highScoreScore = document.createElement("span");
+
+    highScoreName.textContent = i.name + " ";
+    highScoreScore.textContent = i.score;
+
+    highScoreElement.appendChild(highScoreName);
+    highScoreElement.appendChild(highScoreScore);
+    listHighScore.appendChild(highScoreElement);
+  }
+};
+
+const updateHighScore = function (newName) {
+  arrHighScore.push({ name: newName, score: score });
+
+  let sortedArrHighScore = arrHighScore.sort((b, a) => a.score - b.score);
+
+  if (sortedArrHighScore.length > 3) {
+    sortedArrHighScore.length = 3;
+  }
+
+  //get lowest number in high Score and store it to the variable
+  lowestHighScore = sortedArrHighScore[2].score;
+
+  displayNewHighScore(sortedArrHighScore);
+};
+
+function isHighScore() {
+  if (score > lowestHighScore) {
+    displayFinalScoreHighScore();
+  } else {
+    displayFinalScoreNormal();
+  }
+}
+
+//get name from inputfield and updates highscore and resets the game
+function getInputName() {
+  let newName = highScoreName.value;
+  updateHighScore(newName);
+  displayResetGame();
+}
+
+/*********** DISPLAY ***********/
+/* Three functions to display different scenarios of the game */
+
+function displayResetGame() {
+  // outputCurrentScore.textContent = 0;
+  coins.textContent = '';
+
+  btnStart.style.display = "inline";
+  btnStart.textContent = "START";
+  btnStart.style.backgroundColor = "var(--green)";
+
+  btnTimer.style.display = "inline";
+  btnTimer.textContent = "10";
+
+  outputQuestion.textContent = "READY?";
+
+  wrapFinalScore.style.display = "none";
+  wrapFinalScoreHighScore.style.display = "none";
+  btnPlayAgain.style.display = "none";
+
+  // wrapCurrentScore.style.display = "block";
+  wrapAnswer.style.display = "block";
+  wrapQuestion.style.display = "block";
+
+  answerInput.value = "";
+
+  btnStart.addEventListener("click", newGame, { once: true });
+}
+
+function displayFinalScoreNormal() {
+  outputFinalScore.textContent = score;
+
+  // wrapCurrentScore.style.display = "none";
+  coins.textContent = '';
+  wrapAnswer.style.display = "none";
+  wrapQuestion.style.display = "none";
+  // textIfHighScore.style.display = 'none';
+
+  btnStart.style.backgroundColor = "var(--red)";
+  btnStart.textContent = "GAME";
+  btnTimer.textContent = "OVER";
+
+  wrapFinalScore.style.display = "block";
+  wrapFinalScore.style.marginTop = '5rem';
+  btnPlayAgain.style.display = "block";
+  // textNotHighScore.style.display = 'inline';
+
+  btnPlayAgain.addEventListener("click", getInputName);
+}
+
+function displayFinalScoreHighScore() {
+  wrapFinalScore.style.display = "block";
+  wrapFinalScore.style.marginTop = '0';
+  outputFinalScore.textContent = score;
+
+  coins.textContent = '';
+  btnStart.style.display = "none";
+  btnTimer.style.display = "none";
+  wrapAnswer.style.display = "none";
+  wrapQuestion.style.display = "none";
+  // textNotHighScore.style.display = 'none';
+
+  wrapFinalScoreHighScore.style.display = "block";
+  btnPlayAgain.style.display = "block";
+  // textIfHighScore.style.display = 'inline';
+
+  btnPlayAgain.addEventListener("click", getInputName);
+}
+
+
+/*** Eventlisteners for operator-choice ***/
 addition.addEventListener("click", () => (operator = "addition"));
 subtraction.addEventListener("click", () => (operator = "subtraction"));
 multiplication.addEventListener("click", () => (operator = "multiplication"));
 division.addEventListener("click", () => (operator = "division"));
 
-const checkOperator = () => {
-  let typeOfGame = operator;
-  switch (typeOfGame) {
-    case "addition":
-      return "addition";
-      break;
-    case "subtraction":
-      return "subtraction";
-      break;
-    case "multiplication":
-      return "multiplication";
-      break;
-    case "division":
-      return "division";
-      break;
-    default:
-      return "addition";
-  }
-};
+/********* SITE LOAD  *********/
 
-/************* GAME **************/
-let outputTime = 10;
-let timepassed = 0;
-let timer = null;
-let startTime;
-
-let realAnswer;
-let score = 0;
-
-const startTimer = () => {
-  startTime = Date.now() - timepassed;
-  timer = setInterval(function () {
-    timepassed = Date.now() - startTime;
-    outputTime -= 1;
-    spanTimer.textContent = outputTime;
-    if (outputTime <= 0) {
-      window.clearInterval(timer);
-      spanTimer.textContent = "GAME";
-      spanStart.textContent = "OVER";
-    }
-  }, 1000);
-};
-
-//game 
-let typeOfGame = checkOperator();
-
-
-if ((typeOfGame = "addition")) {
-  console.log(typeOfGame);
-}
-let rightAnswer;
-  let max = 11;
-  //question depending on operator
-  const questionLoop = () => {
-    startTimer();
-    let num1 = Math.floor(Math.random() * max);
-    let num2 = Math.floor(Math.random() * max);
-    rightAnswer = num1 + num2;
-    outputQuestion.textContent = `${num1} + ${num2}`;
-  };
-
-
-//otherwise same
-
-//checkAnswer
-const checkAnswer = (playerAnswer) => {
-  console.log(playerAnswer);
-  console.log(rightAnswer);
-  if (playerAnswer == rightAnswer) {
-    score ++;
-    // btnTimer.style.backgroundcolor = 'white';
-    // outputTime += 5;
-    outputScore.textContent = score;
-    questionLoop();
-    return true;
-  }
-};
-
-/**** Event Listeners ****/
-
-answerInput.addEventListener("keyup", () => {
-  let playerAnswer = answerInput.value;
-  if (checkAnswer(playerAnswer)) {
-    answerInput.value = '';
-  };
-});
-
-btnStart.addEventListener("click", questionLoop);
+displayResetGame();
