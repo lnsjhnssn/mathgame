@@ -50,31 +50,36 @@ select {
 
 /***** FONTS *****/
 
-@font-face { 
+@font-face {
   font-family: "Inter-Light";
   font-style: light;
   font-weight: 300;
-  src: 
-    url(/fonts/Inter-Light.ttf) format("truetype");
+  src: url(/fonts/Inter-Light.ttf) format("truetype");
 }
 
 /***** COLOURS *****/
 
-
-  :root {
-    --red: #CF1313;
-    --green: #65CF13;
-    --blue: #4A5CFF;
-    --white: #ffffff;
+:root {
+  --red: #cf1313;
+  --green: #65cf13;
+  --blue: #4a5cff;
+  --white: #ffffff;
 }
 
 /****** STYLE GAME *******/
 
 body {
-  font-family: 'Inter-Light';
+  font-family: "Inter-Light";
   font-size: 2rem;
   color: var(--white);
-  background-image: linear-gradient(to right top, #ffaaaa, #fea2a2, #fd9a9a, #fc9191, #fa8989);
+  background-image: linear-gradient(
+    to right top,
+    #ffaaaa,
+    #fea2a2,
+    #fd9a9a,
+    #fc9191,
+    #fa8989
+  );
 }
 
 .main-container {
@@ -130,8 +135,8 @@ input {
 /*Removing arrow buttons from input*/
 #answer::-webkit-inner-spin-button,
 #answer::-webkit-outer-spin-button {
-    -webkit-appearance: none !important;
-    margin: 0 !important;
+  -webkit-appearance: none !important;
+  margin: 0 !important;
 }
 
 #answer {
@@ -145,7 +150,7 @@ input[type="radio"] {
   width: 1rem;
   height: 1rem;
   border-radius: 50%;
-} 
+}
 
 .label-operator {
   display: block;
@@ -226,4 +231,3 @@ input[type="radio"] {
 #text-if-not-high-score {
   margin-top: 5rem;
 }
-
