@@ -1,35 +1,37 @@
 /********* Selectors DOM *********/
 
-const btnStart = document.querySelector("#btn-start"); //start button
-const btnTimer = document.querySelector("#btn-timer"); //timer
+//buttons
+const btnStart = document.querySelector("#btn-start");
+const btnTimer = document.querySelector("#btn-timer");
+const btnPlayAgain = document.querySelector("#btn-play-again");
 
-const outputQuestion = document.querySelector("#question"); //question-field
-const coins = document.querySelector("#coins"); //coin-points
+//question
+const outputQuestion = document.querySelector("#question");
+const wrapQuestion = document.querySelector("#wrap-question");
 
+//answer
+const answerInput = document.querySelector("#answer");
+const wrapAnswer = document.querySelector("#wrap-answer");
+
+//score
+const coins = document.querySelector("#coins");
 const wrapCurrentScore = document.querySelector("#wrap-current-score"); //div for currentScore
+const outputFinalScore = document.querySelector("#final-score");
 
-//operator choice-field
+//check box-operator choices
 const addition = document.querySelector("#addition");
 const subtraction = document.querySelector("#subtraction");
 const multiplication = document.querySelector("#multiplication");
 const division = document.querySelector("#division");
 
-//input-fields for answer and field for question
-const answerInput = document.querySelector("#answer");
+//input-high-score
 const highScoreName = document.querySelector("#high-score-name");
-const wrapAnswer = document.querySelector("#wrap-answer");
-const wrapQuestion = document.querySelector("#wrap-question");
 
 //high score list
 const listHighScore = document.querySelector("#list-high-score");
 
-//fields to be displayed at the end of each game
-const outputFinalScore = document.querySelector("#final-score");
+//divs to be displayed at the end of each game
 const wrapFinalScore = document.querySelector("#wrap-final-score");
-const btnPlayAgain = document.querySelector("#btn-play-again");
-const textIfHighScore = document.querySelector("#text-if-high-score");
-const textNotHighScore = document.querySelector("#text-if-not-high-score");
-
 const wrapFinalScoreHighScore = document.querySelector(
   "#wrap-final-score-highscore"
 );
