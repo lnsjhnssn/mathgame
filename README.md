@@ -1,2 +1,2 @@
 # A Math Game
-Built with javascript, html, css. 
+Built with html, css, vanilla js.  
